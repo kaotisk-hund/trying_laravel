@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Articles;
+use App\Article;
 use App\Http\Requests\ArticleRequest;
 
 
@@ -20,7 +20,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $articles = Articles::latest()->published()->get();
+        $articles = Article::latest()->published()->get();
         return view('articles.index', compact('articles'));
     }
 
@@ -33,7 +33,7 @@ class ArticlesController extends Controller
      */
     public function show($id)
     {
-        $article = Articles::findOrFail($id);
+        $article = Article::findOrFail($id);
         return view('articles.show', compact('article'));
     }
 
@@ -55,7 +55,7 @@ class ArticlesController extends Controller
      */
     public function store(ArticleRequest $request)
     {
-        Articles::create($request->all());
+        Article::create($request->all());
         return redirect('articles');
     }
 
@@ -68,7 +68,7 @@ class ArticlesController extends Controller
      */
     public function edit($id)
     {
-        $article = Articles::findOrFail($id);
+        $article = Article::findOrFail($id);
         return view('articles.edit', compact('article'));
     }
 
@@ -81,7 +81,7 @@ class ArticlesController extends Controller
      */
     public function update($id, ArticleRequest $request)
     {
-        $article = Articles::findOrFail($id);
+        $article = Article::findOrFail($id);
         $article->update($request->all());
         return redirect('articles');
     }
