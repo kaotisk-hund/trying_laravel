@@ -20,7 +20,17 @@ Route::get('about', 'PagesController@about');
 Route::get('home','HomeController@index');
 
 
-Route::get('articles', 'ArticlesController@index');
-Route::get('articles/create', 'ArticlesController@create');
-Route::get('articles/{id}', 'ArticlesController@show');
-Route::post('articles', 'ArticlesController@store');
+
+/**
+ * Going to be replaced
+ *
+ * Route::get('articles', 'ArticlesController@index');
+ * Route::get('articles/create', 'ArticlesController@create');
+ * Route::get('articles/{id}', 'ArticlesController@show');
+ * Route::post('articles', 'ArticlesController@store');
+ */
+/**
+ * With that !!!
+ *
+ */
+Route::resource('articles','ArticlesController');
