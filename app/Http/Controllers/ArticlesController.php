@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Articles;
-use App\Http\Requests\CreateArticleRequest;
+use App\Http\Requests\ArticleRequest;
 
 
 /**
@@ -50,10 +50,10 @@ class ArticlesController extends Controller
     /**
      * Store the created article
      *
-     * @param CreateArticleRequest $request
+     * @param ArticleRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(CreateArticleRequest $request)
+    public function store(ArticleRequest $request)
     {
         Articles::create($request->all());
         return redirect('articles');
@@ -76,10 +76,10 @@ class ArticlesController extends Controller
      * Updates the edited article.
      *
      * @param $id
-     * @param CreateArticleRequest $request
+     * @param ArticleRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update($id, CreateArticleRequest $request)
+    public function update($id, ArticleRequest $request)
     {
         $article = Articles::findOrFail($id);
         $article->update($request->all());
