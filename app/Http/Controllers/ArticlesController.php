@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Articles;
-use Request;
+use App\Http\Requests\CreateArticleRequest;
 
 
 /**
@@ -50,11 +50,12 @@ class ArticlesController extends Controller
     /**
      * Store the created article
      *
+     * @param CreateArticleRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store()
+    public function store(CreateArticleRequest $request)
     {
-        Articles::create(Request::all());
+        Articles::create($request->all());
         return redirect('articles');
     }
 }
