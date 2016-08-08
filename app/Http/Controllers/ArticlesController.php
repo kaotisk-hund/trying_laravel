@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
 use App\Article;
+use App\Http\Requests;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\Auth;
  */
 class ArticlesController extends Controller
 {
+
+    /**
+     * Attach the middleware in Articles Controller
+     * except the index.
+     *
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => 'index']);
+    }
 
     /**
      * Shows all articles
@@ -31,13 +41,12 @@ class ArticlesController extends Controller
     /**
      * Shows selected article
      *
-     * @param $id
+     * @param Article $article
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @internal param $id
      */
-    public function show($id)
+    public function show(Article $article)
     {
-        $article = Article::findOrFail($id);
-
         return view('articles.show', compact('article'));
     }
 
@@ -70,26 +79,25 @@ class ArticlesController extends Controller
     /**
      * Edits existing article.
      *
-     * @param $id
+     * @param Article $article
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @internal param $id
      */
-    public function edit($id)
+    public function edit(Article $article)
     {
-        $article = Article::findOrFail($id);
-
         return view('articles.edit', compact('article'));
     }
 
     /**
      * Updates the edited article.
      *
-     * @param $id
+     * @param Article $article
      * @param ArticleRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @internal param $id
      */
-    public function update($id, ArticleRequest $request)
+    public function update(Article $article, ArticleRequest $request)
     {
-        $article = Article::findOrFail($id);
         $article->update($request->all());
         return redirect('articles');
     }
