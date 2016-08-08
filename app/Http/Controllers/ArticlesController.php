@@ -72,6 +72,8 @@ class ArticlesController extends Controller
 
         Auth::user()->articles()->save($article);
 
+        \Session::flash('flash_message', 'Your article has been created');
+
         return redirect('articles');
     }
 
