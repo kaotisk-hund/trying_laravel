@@ -21,6 +21,9 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{ url('/home') }}">Home</a></li>
                 <li><a href="{{ url('/articles') }}">Articles</a></li>
+                @unless(Auth::guest())
+                    <li><a href="{{ url('/articles/create') }}">Create article</a></li>
+                @endunless
             </ul>
 
             <!-- Right Side Of Navbar -->
