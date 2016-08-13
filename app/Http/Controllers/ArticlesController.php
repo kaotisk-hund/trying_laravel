@@ -23,7 +23,9 @@ class ArticlesController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => 'index']);
+        $this->middleware('auth', [
+            'except' => 'index'
+        ]);
     }
 
     /**
@@ -53,14 +55,13 @@ class ArticlesController extends Controller
 
     /**
      * Creates a new article
-     *
-     * @param Tag $tag_list
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @internal param Tag $tag_list
      */
-    public function create(Tag $tag_list)
+    public function create()
     {
-
-        return view ('articles.create', compact('tag_list'));
+        $tags = Tag::lists('name','id');
+        return view ('articles.create', compact('tags'));
     }
 
     /**
@@ -82,13 +83,13 @@ class ArticlesController extends Controller
      * Edits existing article.
      *
      * @param Article $article
-     * @param Tag $tag_list
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @internal param $id
      */
-    public function edit(Article $article, Tag $tag_list)
+    public function edit(Article $article)
     {
-        return view('articles.edit', compact('article', 'tag_list'));
+        $tags = Tag::lists('name','id');
+        return view('articles.edit', compact('article', 'tags'));
     }
 
     /**
