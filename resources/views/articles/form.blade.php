@@ -15,7 +15,19 @@
 
 <div class="form-group">
     {!! Form::label('tag_list', 'Tags:') !!}
-    {!! Form::select('tag_list[]', $tags, null, ['class'=>'form-control', 'multiple']) !!}
+    <select id="tag_list" class="form-control" multiple="multiple" name="tag_list[]">
+        @foreach( $tags as $id => $name)
+            <option value="{{ $id }}"
+                @foreach( $article->tags as $tag)
+                    @if($name == $tag->name )
+                        selected=""
+                    @endif
+                @endforeach
+            >{{ $name }}</option>
+        @endforeach
+    </select>
+    <!-- {!! Form::select('tag_list[]', $tags, null, ['id' => 'tag_list', 'class' => 'form-control', 'multiple']) !!}
+     -->
 </div>
 
 <div class="form-group">
@@ -24,6 +36,6 @@
 
 @section('footer')
     <script type="text/javascript">
-        $('select').select2();
+        $('#tag_list').select2();
     </script>
 @endsection
