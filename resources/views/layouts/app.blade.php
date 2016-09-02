@@ -33,12 +33,7 @@
     @include('partials.navbar')
 
     <div class="container">
-        <div class="col-md-8">
-            @yield('content')
-        </div>
-        <div class="col-md-4">
-            @include('partials.radio')
-        </div>
+        @yield('content')
     </div>
 
 
