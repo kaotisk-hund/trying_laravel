@@ -19,6 +19,8 @@ Route::get('contact', 'WelcomeController@contact');
 Route::get('about', 'PagesController@about');
 Route::get('home','HomeController@index');
 
+Route::get('radio','RadioController@index');
+
 
 Route::resource('articles','ArticlesController');
 
